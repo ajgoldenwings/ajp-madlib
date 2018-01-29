@@ -15,7 +15,7 @@ class Header extends React.Component {
 						<img src={logo} className="App-logo" alt="logo" />
 					</Grid>
 					<Grid className="Flex-center">
-						<div className="App-title"><u>{messageTitle}</u> By {messageAuthor}</div>
+						<div className="App-title"><u>{messageTitle}</u> by {messageAuthor}</div>
 					</Grid>
 				</Grid>
 			</header>
