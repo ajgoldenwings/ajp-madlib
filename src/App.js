@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-//import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Grid from 'material-ui/Grid';
-import Avatar from 'material-ui/Avatar';
-import Typography from 'material-ui/Typography';
 import Header from './Header';
 import Intro from './Intro';
-import TextField from 'material-ui/TextField';
+import Questions from './Questions';
 
 
 const styles = theme => ({
@@ -19,50 +14,7 @@ const styles = theme => ({
     marginRight: 30,
     marginBottom: 30,
   },
-  paper: {
-    padding: 16,
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
-    margin: theme.spacing.unit,
-    //padding: theme.spacing.unit * 2,
-  },
 });
-
-const posts = [
-  {id: 1, prompt: 'Place an adverb.  For example: boldly; quickly; patiently.',                 placeholder: 'mostly'},
-  {id: 2, prompt: 'What is something that you have (singular)?',                                placeholder: 'ball'},
-  {id: 3, prompt: 'Place a noun.',                                                              placeholder: 'skyscraper'},
-  {id: 4, prompt: 'Write a person\'s na',                                                       placeholder: 'Bob'},
-  {id: 5, prompt: 'What is a adjective of " + persons_name + "?',                               placeholder: 'strong'},
-  {id: 6, prompt: 'What is an adjective of a person you do not like?',                          placeholder: 'mean'},
-  {id: 7, prompt: 'Place an adjective to a dirty sock',                                         placeholder: 'dirty'},
-  {id: 8, prompt: 'What is your best friend\'s name?',                                          placeholder: 'Joe'},
-  {id: 9, prompt: 'What sport do you and your best friend, " + bf + ", like to play together?', placeholder: 'soccer'},
-  {id: 10, prompt: 'What verb do you do with " + b',                                            placeholder: 'bounce'},
-  {id: 11, prompt: 'What is your favorite thing to drink?',                                     placeholder: 'pop'}
-];
-
-// // Abverb is below
-// abverb = prompt("Place an adverb.  For example: boldly; quickly; patiently.", "mostly");
-// // Noun is below
-//     possession = prompt("What is something that you have (singular)?", "ball");
-// // Noun is below
-//     noun = prompt("Place a noun.", "skyscraper");
-// // Noun is below
-//     persons_name = prompt("Write a person's name", "Bob");
-// // Adjective is below
-//     persons_description = prompt("What is a adjective of " + persons_name + "?", "strong");
-// // Adjective is below
-//     pd = prompt("What is an adjective of a person you do not like?", "mean");
-// // Adjective is below
-//     sock = prompt("Place an adjective to a dirty sock", "dirty");
-// // Noun is below
-//     bf = prompt("What is your best friend's name?", "Joe");
-//     sport = prompt("What sport do you and your best friend, " + bf + ", like to play together?", "soccer");
-// // Verb is Below
-// 	verb = prompt("What verb do you do with " + bf, "bounce");
-// // Noun is below
-//     drink = prompt("What is your favorite thing to drink?", "pop");
 
 // // Paragragh one
 //     document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My friend " + bf + " is like " + persons_name + ".");
@@ -95,66 +47,26 @@ const posts = [
 class App extends Component {
   render() {
 		const { classes } = this.props;
-		const message = `Truncation should be conditionally applicable on this long line of text
-											as this is a much longer line than what the container can support. `;
+		const questions = [
+		  {id: 1, prompt: 'Place an adverb. For example: boldly; quickly; patiently.',     placeholder: 'mostly'},
+		  {id: 2, prompt: 'What is your best friend\'s name?',                             placeholder: 'Joe'},
+		  {id: 3, prompt: 'What sport do you and your best friend like to play together?', placeholder: 'soccer'},
+		  {id: 4, prompt: 'What verb do you do with your best friend',                     placeholder: 'bounce'},
+		  {id: 5, prompt: 'What is an adjective of a person you do not like?',             placeholder: 'mean'},
+		  {id: 6, prompt: 'Write some person\'s name you do not like',                     placeholder: 'Bob'},
+		  {id: 7, prompt: 'What is a adjective of this person you do not like?',           placeholder: 'strong'},
+		  {id: 8, prompt: 'What is something that you have (singular)?',                   placeholder: 'ball'},
+		  {id: 9, prompt: 'Place a noun.',                                                 placeholder: 'skyscraper'},
+		  {id: 10, prompt: 'Place an adjective to a dirty sock',                           placeholder: 'dirty'},
+		  {id: 11, prompt: 'What is your favorite thing to drink?',                        placeholder: 'pop'}
+		];
 
     return (
       <div className="App">
 				<Header />
 				<Intro />
 				<div className={classes.root}>
-					<Paper className={classes.paper}>
-						<Grid container wrap="nowrap">
-							<Grid item>
-								<Avatar>1</Avatar>
-							</Grid>
-							<Grid item xs>
-								<Typography>Place an adverb.  For example: boldly; quickly; patiently.</Typography>
-							</Grid>
-						</Grid>
-						<Grid container wrap="nowrap">
-							<Grid item>
-								<Avatar></Avatar>
-							</Grid>
-							<Grid item xs>
-								<TextField
-									id="full-width"
-									InputLabelProps={{
-										shrink: true,
-									}}
-									placeholder="mostly"
-									fullWidth
-									margin="normal"
-								/>
-							</Grid>
-						</Grid>
-					</Paper>
-					<Paper className={classes.paper}>
-						<Grid container wrap="nowrap">
-							<Grid item>
-								<Avatar>2</Avatar>
-							</Grid>
-							<Grid item xs>
-								<Typography>{message}</Typography>
-							</Grid>
-						</Grid>
-							<Grid container wrap="nowrap">
-								<Grid item>
-									<Avatar></Avatar>
-								</Grid>
-								<Grid item xs>
-									<TextField
-										id="full-width"
-										InputLabelProps={{
-											shrink: true,
-										}}
-										placeholder="Ball"
-										fullWidth
-										margin="normal"
-									/>
-								</Grid>
-							</Grid>
-					</Paper>
+					<Questions questions={questions} />
 				</div>
       </div>
     );
