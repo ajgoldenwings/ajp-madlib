@@ -21,7 +21,7 @@ class Questions extends React.Component {
 
 		return (
 			<div>
-				{this.props.questions.map(option => (
+				{/* {this.props.questions.map(option => (
 					<Paper className={classes.paper}>
 						<Grid container wrap="nowrap">
 							<Grid item>
@@ -48,7 +48,7 @@ class Questions extends React.Component {
 							</Grid>
 						</Grid>
 					</Paper>
-				))}
+				))} */}
 			</div>
     );
   }

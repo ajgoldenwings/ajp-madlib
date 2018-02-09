@@ -3,8 +3,8 @@ import './App.css';
 import { withStyles } from 'material-ui/styles';
 import Header from './Header';
 import Intro from './Intro';
-import Questions from './Questions';
-
+// import Questions from './Questions';
+import VerticalLinearStepper from './VerticalLinearStepper';
 
 const styles = theme => ({
   root: {
@@ -47,26 +47,14 @@ const styles = theme => ({
 class App extends Component {
   render() {
 		const { classes } = this.props;
-		const questions = [
-		  {id: 1, prompt: 'Place an adverb. For example: boldly; quickly; patiently.',     placeholder: 'mostly'},
-		  {id: 2, prompt: 'What is your best friend\'s name?',                             placeholder: 'Joe'},
-		  {id: 3, prompt: 'What sport do you and your best friend like to play together?', placeholder: 'soccer'},
-		  {id: 4, prompt: 'What verb do you do with your best friend',                     placeholder: 'bounce'},
-		  {id: 5, prompt: 'What is an adjective of a person you do not like?',             placeholder: 'mean'},
-		  {id: 6, prompt: 'Write some person\'s name you do not like',                     placeholder: 'Bob'},
-		  {id: 7, prompt: 'What is a adjective of this person you do not like?',           placeholder: 'strong'},
-		  {id: 8, prompt: 'What is something that you have (singular)?',                   placeholder: 'ball'},
-		  {id: 9, prompt: 'Place a noun.',                                                 placeholder: 'skyscraper'},
-		  {id: 10, prompt: 'Place an adjective to a dirty sock',                           placeholder: 'dirty'},
-		  {id: 11, prompt: 'What is your favorite thing to drink?',                        placeholder: 'pop'}
-		];
 
     return (
       <div className="App">
 				<Header />
 				<Intro />
 				<div className={classes.root}>
-					<Questions questions={questions} />
+					{/* <Questions questions={questions} /> */}
+					<VerticalLinearStepper />
 				</div>
       </div>
     );
