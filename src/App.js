@@ -16,6 +16,27 @@ const styles = theme => ({
   },
 });
 
+class App extends Component {
+  render() {
+		const { classes } = this.props;
+
+    return (
+      <div className="App">
+				<Header />
+				<Intro />
+				<div className={classes.root}>
+					{/* <Questions questions={questions} /> */}
+					<VerticalLinearStepper />
+				</div>
+      </div>
+    );
+  }
+}
+
+export default withStyles(styles)(App);
+
+
+
 // // Paragragh one
 //     document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My friend " + bf + " is like " + persons_name + ".");
 //     document.write("&nbsp;&nbsp;They are both " + persons_description + ".");
@@ -41,24 +62,3 @@ const styles = theme => ({
 // 	document.write("&nbsp;&nbsp;After telling a solution to his problems we start laughing at our " + pd + " friend and tell " + persons_name + " that " + bf + " gave them a sock from my " + possession + "'s feet, and made it a " + sock + " sock as a gift, to him.");
 // 	document.write("&nbsp;&nbsp;Yea that's right- as a prank!");
 // 	document.write("&nbsp;&nbsp;We got " + persons_name + " good.");
-
-
-
-class App extends Component {
-  render() {
-		const { classes } = this.props;
-
-    return (
-      <div className="App">
-				<Header />
-				<Intro />
-				<div className={classes.root}>
-					{/* <Questions questions={questions} /> */}
-					<VerticalLinearStepper />
-				</div>
-      </div>
-    );
-  }
-}
-
-export default withStyles(styles)(App);
