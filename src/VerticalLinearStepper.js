@@ -15,7 +15,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     marginRight: theme.spacing.unit,
   },
-  completed: {
+	completed: {
     marginTop: theme.spacing.unit,
 		marginRight: theme.spacing.unit,
 		paddingTop: theme.spacing.unit,
@@ -24,6 +24,9 @@ const styles = theme => ({
 		paddingRight: theme.spacing.unit * 2,
     display: 'inline-block',
 	},
+  inline: {
+    display: 'inline-block',
+  },
   resetContainer: {
     padding: theme.spacing.unit * 3,
   },
@@ -50,27 +53,15 @@ function getQuestions() {
 }
 
 class VerticalLinearStepper extends React.Component {
-  // state = {
-  //   activeStep: 0,
-  //   completed: {},
-	// }
 	state = {
     activeStep: 0,
     completed: new Set(),
     skipped: new Set(),
   };
 
-  // allStepsCompleted() {
-  //   return this.completedSteps() === this.totalSteps();
-	// }
-
   allStepsCompleted() {
     return this.completedSteps() === this.totalSteps() - this.skippedSteps();
   }
-
-  // completedSteps() {
-  //   return Object.keys(this.state.completed).length;
-	// }
 
   completedSteps() {
     return this.state.completed.size;
@@ -87,29 +78,6 @@ class VerticalLinearStepper extends React.Component {
   totalSteps = () => {
     return getQuestions().length;
   }
-
-  handleNext = () => {
-    let activeStep;
-
-    if (this.isLastStep() && !this.allStepsCompleted()) {
-      // It's the last step, but not all steps have been completed,
-      // find the first step that has been completed
-      const steps = getQuestions();
-      activeStep = steps.findIndex((step, i) => !(i in this.state.completed));
-    } else {
-      activeStep = this.state.activeStep + 1;
-    }
-    this.setState({
-      activeStep,
-    });
-  }
-
-  // handleBack = () => {
-  //   const { activeStep } = this.state;
-  //   this.setState({
-  //     activeStep: activeStep - 1,
-  //   });
-  // }
 
   handleBack = () => {
     this.setState({
@@ -133,15 +101,6 @@ class VerticalLinearStepper extends React.Component {
     });
   }
 
-  // handleComplete = () => {
-  //   const { completed } = this.state;
-  //   completed[this.state.activeStep] = true;
-  //   this.setState({
-  //     completed,
-  //   });
-  //   this.handleNext();
-  // }
-
   handleComplete = () => {
     const completed = new Set(this.state.completed);
     completed.add(this.state.activeStep);
@@ -155,7 +114,27 @@ class VerticalLinearStepper extends React.Component {
      */
     if (completed.size !== this.totalSteps() - this.skippedSteps()) {
       this.handleNext();
-    }
+		} else {
+			let activeStep = this.totalSteps();
+			this.setState({
+				activeStep,
+			});
+		}
+  }
+
+  handleNext = () => {
+    let activeStep;
+		if (this.isLastStep() && !this.allStepsCompleted()) {
+      // It's the last step, but not all steps have been completed,
+      // find the first step that has been completed
+      const steps = getQuestions();
+      activeStep = steps.findIndex((step, i) => !(i in this.state.completed));
+    } else {
+      activeStep = this.state.activeStep + 1;
+		}
+    this.setState({
+      activeStep,
+    });
   }
 
   handleReset = () => {
@@ -183,7 +162,6 @@ class VerticalLinearStepper extends React.Component {
       <div className={classes.root}>
         <Stepper nonLinear activeStep={activeStep} orientation="vertical">
 					{questions.map((question, index) => {
-						// alternativeLabel
 						const props = {};
             if (this.isStepSkipped(index)) {
               props.completed = false;
@@ -194,7 +172,9 @@ class VerticalLinearStepper extends React.Component {
 									onClick={this.handleStep(index)}
 									completed={this.isStepComplete(index)}
 								>
-									<StepLabel>{question.prompt}</StepLabel>
+									<StepLabel>
+										{this.state.completed.has(question.id-1) ? question.prompt+' (Completed)' : question.prompt}
+									</StepLabel>
 								</StepButton>
 
 								<StepContent>
@@ -217,36 +197,24 @@ class VerticalLinearStepper extends React.Component {
                       >
                         Back
                       </Button>
-                      {/* <Button
-                        variant="raised"
-                        color="primary"
-                        onClick={this.handleNext}
-                        className={classes.button}
-                      >
-                        {activeStep === questions.length - 1 ? 'Finish' : 'Next'}
-											</Button> */}
-											{activeStep !== questions.length &&
-												(this.state.completed.has(this.state.activeStep) ? (
-													<div>
-														<Button
-															variant="raised"
-															color="primary"
-															onClick={this.handleNext}
-															className={classes.button}
-														>
-															Next
-														</Button>
-														<Typography variant="caption" className={classes.completed}>
-															Step {activeStep + 1} already completed
-														</Typography>
-													</div>
+											{activeStep !== questions.length
+												&& (this.state.completed.has(this.state.activeStep)
+												&& (!this.allStepsCompleted()) ?
+												(
+													<Button
+														variant="raised"
+														color="primary"
+														onClick={this.handleNext}
+														className={classes.button}
+													>
+														Next
+													</Button>
 												) : (
 													<Button className={classes.button} variant="raised" color="primary" onClick={this.handleComplete}>
 														{this.completedSteps() === this.totalSteps() - 1 ? 'Finish' : 'Complete Step'}
 													</Button>
-													)
 												)
-											}
+											)}
                     </div>
                   </div>
                 </StepContent>
@@ -254,14 +222,15 @@ class VerticalLinearStepper extends React.Component {
             );
           })}
         </Stepper>
-        {activeStep === questions.length && (
+        {this.completedSteps() === this.totalSteps() && (
           <Paper square elevation={0} className={classes.resetContainer}>
-            <Typography>All questions completed - you&quot;re finished</Typography>
+            <Typography>All questions completed - you are finished</Typography>
             <Button onClick={this.handleReset} className={classes.button}>
               Reset
             </Button>
           </Paper>
 				)}
+				{this.completedSteps() === this.totalSteps() ? 'Completed' : 'Incomplete'}
       </div>
     );
   }
