@@ -30,22 +30,20 @@ const styles = theme => ({
   resetContainer: {
     padding: theme.spacing.unit * 3,
   },
-  root: {
-  },
 });
 
 let questions = [
-	{id: 1, prompt:  'Place an adverb. For example: boldly; quickly; patiently.',     placeholder: 'mostly',     answer: ''},
-	{id: 2, prompt:  'What is your best friend\'s name?',                             placeholder: 'Joe',        answer: ''},
-	{id: 3, prompt:  'What sport do you and your best friend like to play together?', placeholder: 'soccer',     answer: ''},
-	{id: 4, prompt:  'What verb do you do with your best friend',                     placeholder: 'bounce',     answer: ''},
-	{id: 5, prompt:  'What is an adjective of a person you do not like?',             placeholder: 'mean',       answer: ''},
-	{id: 6, prompt:  'Write some person\'s name you do not like',                     placeholder: 'Bob',        answer: ''},
-	{id: 7, prompt:  'What is a adjective of this person you do not like?',           placeholder: 'strong',     answer: ''},
-	{id: 8, prompt:  'What is something that you have (singular)?',                   placeholder: 'ball',       answer: ''},
-	{id: 9, prompt:  'Place a noun.',                                                 placeholder: 'skyscraper', answer: ''},
-	{id: 10, prompt: 'Place an adjective to a dirty sock',                            placeholder: 'dirty',      answer: ''},
-	{id: 11, prompt: 'What is your favorite thing to drink?',                         placeholder: 'pop',        answer: ''}
+	{id: 1, prompt:  'Place an adverb. For example: boldly; quickly; patiently.',     placeholder: 'mostly'},
+	{id: 2, prompt:  'What is your best friend\'s name?',                             placeholder: 'Joe'},
+	{id: 3, prompt:  'What sport do you and your best friend like to play together?', placeholder: 'soccer'},
+	{id: 4, prompt:  'What verb do you do with your best friend',                     placeholder: 'bounce',},
+	{id: 5, prompt:  'What is an adjective of a person you do not like?',             placeholder: 'mean',},
+	{id: 6, prompt:  'Write some person\'s name you do not like',                     placeholder: 'Bob',},
+	{id: 7, prompt:  'What is a adjective of this person you do not like?',           placeholder: 'strong',},
+	{id: 8, prompt:  'What is something that you have (singular)?',                   placeholder: 'ball',},
+	{id: 9, prompt:  'Place a noun.',                                                 placeholder: 'skyscraper',},
+	{id: 10, prompt: 'Place an adjective to a dirty sock',                            placeholder: 'dirty',},
+	{id: 11, prompt: 'What is your favorite thing to drink?',                         placeholder: 'pop',}
 ];
 
 function getQuestions() {
@@ -53,10 +51,18 @@ function getQuestions() {
 }
 
 class VerticalLinearStepper extends React.Component {
+  constructor(props) {
+		super(props);
+		for (var i = 0; i < questions.length; i++) {
+			this.state.answers.push({ id: questions[i].id, answer: ''})
+		}
+	}
+
 	state = {
-    activeStep: 0,
-    completed: new Set(),
-    skipped: new Set(),
+		activeStep: 0,
+		completed: new Set(),
+		skipped: new Set(),
+		answers: [],
   };
 
   allStepsCompleted() {
@@ -99,9 +105,17 @@ class VerticalLinearStepper extends React.Component {
     this.setState({
       activeStep: step,
     });
-  }
+	}
 
-  handleComplete = () => {
+	handleChange = (id, e) => {
+		var newState = this.state;
+		newState.answers[id - 1].answer = e.target.value;
+		this.setState({
+			answers: newState.answers
+		});
+	}
+
+	handleComplete = (answer) => {
     const completed = new Set(this.state.completed);
     completed.add(this.state.activeStep);
     this.setState({
@@ -151,7 +165,7 @@ class VerticalLinearStepper extends React.Component {
 
   skippedSteps() {
     return this.state.skipped.size;
-  }
+	}
 
   render() {
     const { classes } = this.props;
@@ -186,7 +200,8 @@ class VerticalLinearStepper extends React.Component {
 										placeholder={question.placeholder}
 										fullWidth
 										margin="normal"
-										value={question.answer}
+										value={this.state.answers[index].answer}
+										onChange={(e) => this.handleChange(question.id, e)}
 									/>
                   <div className={classes.actionsContainer}>
                     <div>
@@ -210,8 +225,14 @@ class VerticalLinearStepper extends React.Component {
 														Next
 													</Button>
 												) : (
-													<Button className={classes.button} variant="raised" color="primary" onClick={this.handleComplete}>
-														{this.completedSteps() === this.totalSteps() - 1 ? 'Finish' : 'Complete Step'}
+													<Button
+														className={classes.button}
+														variant="raised" color="primary"
+														// onClick={this.handleComplete}
+														onClick={() => this.handleComplete("sdf")}
+														value="{question.answer}"
+													>
+														{this.completedSteps() === this.totalSteps() - 1 ? 'Finish' : 'Complete Question'}
 													</Button>
 												)
 											)}
@@ -230,7 +251,18 @@ class VerticalLinearStepper extends React.Component {
             </Button>
           </Paper>
 				)}
+
 				{this.completedSteps() === this.totalSteps() ? 'Completed' : 'Incomplete'}
+
+				<hr/>
+
+				{this.state.answers.map((question, index) => {
+					return (
+						<div key={question.id}>
+							{question.answer}
+						</div>
+					)
+				})}
       </div>
     );
   }
