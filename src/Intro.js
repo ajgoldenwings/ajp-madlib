@@ -18,10 +18,11 @@ class Intro extends React.Component {
   render() {
 		const { classes } = this.props;
 
-    return (
-      <p className={classes.intro}>
-				<i>A reproduction of the <a href="http://studentweb.stcloudstate.edu/pean0906/sites/CSCI/Labs/lab3/lab3.html" target="_blank" rel="noopener noreferrer"> original</a>.</i>
-			</p>
+		return (
+			<div>
+				<p className={classes.intro}> <i>A reproduction of the <a href="http://studentweb.stcloudstate.edu/pean0906/sites/CSCI/Labs/lab3/lab3.html" target="_blank" rel="noopener noreferrer"> original</a>. View the source on <a href="https://github.com/ajgoldenwings/ajp-madlib" rel="noopener noreferrer" target="_blank">GitHub.</a></i>
+				</p>
+			</div>
     );
   }
 }
