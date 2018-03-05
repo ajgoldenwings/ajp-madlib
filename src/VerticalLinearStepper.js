@@ -32,13 +32,13 @@ let questions = [
 	{id: 1, prompt:  'Place an adverb. For example: boldly; quickly; patiently.',     placeholder: 'mostly'},
 	{id: 2, prompt:  'What is your best friend\'s name?',                             placeholder: 'Joe'},
 	{id: 3, prompt:  'What sport do you and your best friend like to play together?', placeholder: 'soccer'},
-	{id: 4, prompt:  'What verb do you do with your best friend',                     placeholder: 'bounce',},
+	{id: 4, prompt:  'What verb do you do with your best friend?',                    placeholder: 'bounce',},
 	{id: 5, prompt:  'What is an adjective of this friend?',                          placeholder: 'strong',},
-	{id: 6, prompt:  'Write some person\'s name you do not like',                     placeholder: 'Bob',},
+	{id: 6, prompt:  'Write some person\'s name.',                                    placeholder: 'Bob',},
 	{id: 7, prompt:  'What is a adjective of this person you do not like?',           placeholder: 'mean',},
 	{id: 8, prompt:  'What is something that you have (singular)?',                   placeholder: 'ball',},
-	{id: 9, prompt:  'Place a noun.',                                                 placeholder: 'skyscraper',},
-	{id: 10, prompt: 'Place an adjective to a dirty sock',                            placeholder: 'dirty',},
+	{id: 9, prompt:  'What is something that your best friend have (singular)?',      placeholder: 'skyscraper',},
+	{id: 10, prompt: 'Place an adjective to a dirty sock.',                           placeholder: 'dirty',},
 	{id: 11, prompt: 'What is your favorite thing to drink?',                         placeholder: 'pop',}
 ];
 
@@ -256,27 +256,27 @@ class VerticalLinearStepper extends React.Component {
 						{this.renderAnswer(1)}{/* bf */}
 						&nbsp;is like&nbsp;
 						{this.renderAnswer(5)}{/* persons_name */}
-						.&nbsp;&nbsp;They are both&nbsp;
+						.&nbsp;They are both&nbsp;
 						{this.renderAnswer(4)}{/* persons_description */}
-						.&nbsp;&nbsp;Unlike&nbsp;
+						.&nbsp;Unlike&nbsp;
 						{this.renderAnswer(5)}{/* persons_name */}
 						,&nbsp;
 						{this.renderAnswer(1)}{/* bf */}
 						&nbsp;has a&nbsp;
 						{this.renderAnswer(8)}{/* noun */}
-						.&nbsp;&nbsp;If you think about it,&nbsp;
+						.&nbsp;If you think about it,&nbsp;
 						{this.renderAnswer(5)}
 						&nbsp;is not so sweet because&nbsp;
 						{this.renderAnswer(1)}
 						&nbsp;has a&nbsp;
 						{this.renderAnswer(8)}
-						.&nbsp;&nbsp;Also,&nbsp;
+						.&nbsp;Also,&nbsp;
 						{this.renderAnswer(1)}
 						&nbsp;is so much&nbsp;
-						<b>{this.renderAnswer(4)}er</b>
-						, and that makes my&nbsp;
+						{this.renderAnswer(4)}
+						er, and that makes my&nbsp;
 						{this.renderAnswer(7)}
-						&nbsp;rock it's socks off.&nbsp;&nbsp;I know that my&nbsp;
+						&nbsp;rock it's socks off.&nbsp;I know that my&nbsp;
 						{this.renderAnswer(7)}
 						&nbsp;might not have socks but if it did, I am just saying, I know&nbsp;
 						{this.renderAnswer(1)}
@@ -286,29 +286,29 @@ class VerticalLinearStepper extends React.Component {
 						{this.renderAnswer(9)}
 						&nbsp;socks and then give the&nbsp;
 						{this.renderAnswer(9)}
-						&nbsp;socks&nbsp;
+						&nbsp;socks to&nbsp;
 						{this.renderAnswer(5)}
-						&nbsp;as a gift!<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anyways,
+						&nbsp;as a gift!<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anyways,&nbsp;
 						{this.renderAnswer(5)}
 						&nbsp;is a&nbsp;
 						{this.renderAnswer(6)}
 						&nbsp;person that has to be with my best friend and I all the time, especially when we&nbsp;
 						{this.renderAnswer(3)}
-						&nbsp;together.&nbsp;&nbsp;But we like to have some fun with this&nbsp;
+						&nbsp;together.&nbsp;But we like to have some fun with this&nbsp;
 						{this.renderAnswer(6)}
-						&nbsp;person.&nbsp;&nbsp;For example, we play&nbsp;
+						&nbsp;person.&nbsp;For example, we play&nbsp;
 						{this.renderAnswer(2)}
-						&nbsp;a lot and when playing we make fun of&nbsp;
+						&nbsp;a lot and when playing, we make fun of&nbsp;
 						{this.renderAnswer(5)}
-						's clumsy mistakes!&nbsp;&nbsp;We laugh throughout the game of&nbsp;
+						's clumsy mistakes!&nbsp;We laugh throughout the game of&nbsp;
 						{this.renderAnswer(2)}
-						.&nbsp;&nbsp;After a game of much fun,&nbsp;
+						.&nbsp;After a game of much fun,&nbsp;
 						{this.renderAnswer(1)}
 						&nbsp;and I take it back to my place and crack open a couple of&nbsp;
 						{this.renderAnswer(10)}
 						s and sit back reflecting on the&nbsp;
 						{this.renderAnswer(2)}
-						&nbsp;game&nbsp;&nbsp;We&nbsp;
+						&nbsp;game.&nbsp;We&nbsp;
 						{this.renderAnswer(0)}
 						&nbsp;point out how poor&nbsp;
 						{this.renderAnswer(5)}
@@ -316,33 +316,35 @@ class VerticalLinearStepper extends React.Component {
 						{this.renderAnswer(1)}
 						&nbsp;is totally not like&nbsp;
 						{this.renderAnswer(5)}
-						&nbsp;because they do not&nbsp;
+						&nbsp;because&nbsp;
+						{this.renderAnswer(5)}
+						&nbsp;does not&nbsp;
 						{this.renderAnswer(3)}
-						&nbsp;like us.&nbsp;&nbsp;We have been always using our&nbsp;
+						&nbsp;like us.&nbsp;We have been always using our&nbsp;
 						{this.renderAnswer(3)}
 						ing skills against&nbsp;
 						{this.renderAnswer(5)}
 						, the&nbsp;
 						{this.renderAnswer(6)}
-						&nbsp;head.&nbsp;&nbsp;Sometimes&nbsp;
+						&nbsp;head.&nbsp;Sometimes&nbsp;
 						{this.renderAnswer(1)}
 						&nbsp;and I are good friends with&nbsp;
 						{this.renderAnswer(5)}
-						.&nbsp;&nbsp;We&nbsp;
+						.&nbsp;We&nbsp;
 						{this.renderAnswer(0)}
 						&nbsp;point out to our friend&nbsp;
 						{this.renderAnswer(5)}
 						&nbsp;how they did not play&nbsp;
 						{this.renderAnswer(2)}
-						&nbsp;that good or not good at all.&nbsp;&nbsp;As a solution we tell&nbsp;
+						&nbsp;that good or not good at all.&nbsp;As a solution, we tell&nbsp;
 						{this.renderAnswer(5)}
 						&nbsp;as polite as we can that they can not play&nbsp;
 						{this.renderAnswer(2)}
-						, therefore we tell&nbsp;
+						. We get to the point that &nbsp;
 						{this.renderAnswer(5)}
-						&nbsp;straight up that they suck at&nbsp;
+						&nbsp;straight up sucks at&nbsp;
 						{this.renderAnswer(2)}
-						&nbsp;and should not play that {this.renderAnswer(2)}.&nbsp;&nbsp;After telling a solution to his problems we start laughing at our&nbsp;
+						&nbsp;and should not play {this.renderAnswer(2)}.&nbsp;After telling a solution to their problems, we start laughing at our&nbsp;
 						{this.renderAnswer(6)}
 						&nbsp;friend and tell&nbsp;
 						{this.renderAnswer(5)}
@@ -352,7 +354,7 @@ class VerticalLinearStepper extends React.Component {
 						{this.renderAnswer(7)}
 						's feet, and made it a&nbsp;
 						{this.renderAnswer(9)}
-						&nbsp;sock as a gift, to them.&nbsp;&nbsp;Yea that's right- as a prank!&nbsp;&nbsp;We got&nbsp;
+						&nbsp;sock as a gift, to them.&nbsp;Yea that's right- as a prank!&nbsp;We got&nbsp;
 						{this.renderAnswer(5)}
 						&nbsp;good.
 					</Typography>
